@@ -1,0 +1,58 @@
+<%= link_to 'Back', games_path, class: "btn btn-warning change-employee-role",style: "width:4%;margin-left:95%;margin-top:1%"%>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title"><%= @game.new_record? ? 'New ' : 'Update '%> Game</h4>
+        <form class="form">
+          <div class="form-group mb-3 row">
+            <%= f.label "Title", class: "col-2 col-form-label" %>
+            <div class="col-3">
+              <%= f.text_field :title, class: "form-control" %>
+            </div>
+          </div>
+
+          <div class="form-group mb-3 row">
+            <%= f.label "Start Date", class: "col-2 col-form-label" %>
+            <div class="col-3">
+              <%= f.date_field :start_date, class: "form-control" %>
+            </div>
+          </div>
+
+          <div class="form-group mb-3 row">
+            <%= f.label "End Date", class: "col-2 col-form-label" %>
+            <div class="col-3">
+              <%= f.date_field :end_date, class: "form-control" %>
+            </div>
+          </div>
+
+          <%= f.fields_for :game_players do |ff| %>
+            <br/><hr>
+            <div class="form-group mb-3 row">
+              <div class="col-md-10">
+                <div class="row">
+                  <%= ff.label "Player", class: "col-form-label col-sm-2" %>
+                  <div class="col-md-8">
+                    <%= ff.select :player_id, Player.all.order(:first_name).collect { |player| [ player&.full_name, player&.id ]}, {include_blank: "Select Player"}, {class: " form-control",style:"width:83%"} %>
+                  </div>
+                </div>
+              </div><br/>
+              <div class="col-md-10">
+                <div class="row">
+                  <%= ff.label :Score, class: "col-form-label col-sm-2",style:'margin-right:3%'%>
+                  <div class="col-md-8">
+                    <%= ff.text_field :score, class: 'form-control'%>
+                  </div>
+                </div>
+              </div><br/>
+            </div>
+          <% end %>
+           
+          <div class="form-group row">
+            <%= f.submit @game.new_record? ? 'Create' : 'Update', class: 'btn btn-success d-lg-block m-l-15', id: 'vendor_submit'%>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

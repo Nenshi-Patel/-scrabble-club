@@ -1,0 +1,18 @@
+<%= render '/players/navbar'%>
+<html>
+<body style="background:#60467e">
+  <div class="card employee_issue_div mt-4" style="width:50%;height:450px;margin-left:25%">
+    <div class="card-body">
+      <nav class="navbar navbar-expand-md navbar-dark bg-orange">
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul>
+          <li><%= link_to 'Player', players_path,class:"btn btn-secondary" %></li><br/>
+          <li><%= link_to 'Game', games_path,class:"btn btn-secondary" %></li><br/>
+          <li><%= link_to 'Leader Board', leader_boards_path,class:"btn btn-secondary" %></li><br/> 
+        </ul>
+      </div>
+    </nav>
+    </div>
+  </div>
+</body>
+</html>

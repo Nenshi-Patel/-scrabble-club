@@ -1,0 +1,49 @@
+<%= render 'navbar'%>
+<p id="notice"><%= notice %></p>
+<html>
+<body style="background:#60467e">
+<%= link_to 'Edit', edit_player_path(@player), class: "btn btn-warning change-employee-role",style: "width:7%;float:left;margin-left:85%" %>
+<%= link_to 'Back', players_path,method: :post, class: "btn btn-warning change-employee-role",style: "width:4%;margin-left:1%"%>
+  <div>
+    <div class="card text-dark bg-light mb-3" style="width: 30%;float:left;margin-left:15%;margin-right: 5%;height:300px;border-radius: 5%;">
+      <div class="card-header"><center><h1 style="color:#60467e">Player Information</h1></center></div>
+      <div class="card-body" style="color:#60467e">
+       <p class="card-text">
+          First name &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:
+          <%= @player.first_name %>
+        </p>
+        <p class="card-text">
+          Last name &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:
+          <%= @player.last_name %>
+        </p>
+        <p class="card-text">
+          Contact Details &nbsp&nbsp:
+          <%= @player.contact_details %><br><br>
+        </p>
+      </div>
+    </div>
+
+    <div class="card text-dark bg-light mb-3" style="width: 30%; margin-top:8%; height:300px; border-radius: 5%;">
+      <div class="card-header"><center><h1 style="color:#60467e">Game details</center></h1></div>
+        <div class="card-body" style="color:#60467e">
+          <p class="card-text">
+            Number of wins &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: <%= @player.game_players.present? ? find_no_of_winner(@player.game_players) : 0%>
+          </p>  
+
+          <p class="card-text">
+            Number of losses &nbsp&nbsp&nbsp: <%= @player.game_players.present? ? find_no_of_loss(@player.game_players) : 0%>
+          </p>
+
+          <p class="card-text">
+            Average score &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: <%= @player.game_players.present? ? find_average_score(@player.game_players) : 0 %>
+          </p>
+
+          <p class="card-text">
+            Highest score &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: <%= @player.game_players.present? ? find_higest_score(@player&.game_players) : 0%>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

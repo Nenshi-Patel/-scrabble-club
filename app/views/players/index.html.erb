@@ -1,0 +1,58 @@
+<link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+<script>
+$(function(){
+  $("#player_table").dataTable();
+})
+</script>
+<%= render 'navbar'%>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+					<div class="col-8">
+            <h4 class="card-title mb-3">Player List</h4>
+          </div>
+          
+            <%#= link_to 'Create Player', new_player_path, class: "btn btn-warning change-employee-role",style: "width:7%;float:left;margin-left:20%" %>
+            <%= link_to 'Back', root_path, class: "btn btn-warning change-employee-role",style: "width:4%;margin-left:95%"%>
+        </div><br/>
+        <div class="table-responsive employees_list">
+          <table id="player_table" class="desk-table display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+              <tr>
+                <th>Player Name</th>
+                <th>Date Of Joining</th>
+                <th>Contact Details</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @players&.each do |player| %>
+                <tr>
+                  <td><%= player.first_name %></td>
+                  <td><%= player.date_of_joining.strftime('%d-%m-%Y') %></td>
+                  <td><%= player.contact_details %></td>
+
+                  <td>
+                    <%= link_to player_path(player) do %>
+                      <i class="fa fa-eye icon-color-size" data-toggle="tooltip" data-placement="top" title="Watch"></i>
+                    <%end%>
+                    <%= link_to edit_player_path(player) do %>
+                      <i class="fa fa-edit icon-color-size" data-toggle="tooltip" data-placement="top" title="Edit"></i>
+                    <% end %>
+                    <%= link_to player_path(player), method: :delete, data: {confirm: 'Are you sure? '} do %>
+                      <i class="fa fa-trash icon-color-size" data-toggle="tooltip" data-placement="top" title="Delete"></i>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

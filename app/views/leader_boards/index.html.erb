@@ -1,0 +1,44 @@
+<link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+<script>
+$(function(){
+  $("#leaderboard_table").dataTable();
+})
+</script>
+<%= render '/players/navbar'%>
+<%= link_to 'Back', root_path, class: "btn btn-warning change-employee-role",style: "width:4%;margin-left:95%;margin-top:1%"%>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+					<div class="col-8">
+            <h4 class="card-title mb-3">Leader Board</h4>
+          </div>
+         
+        </div><br/>
+        <div class="table-responsive employees_list">
+          <table id="leaderboard_table" class="desk-table display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+              <tr>
+                <th>Player Name</th>
+                <th>Number Of Game Played</th>
+                <th>Aaverage Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @players&.each do |player| %>
+                <tr>
+                  <td><%= player.full_name %></td>
+                  <td><%= player.game_players.count%></td>
+                  <td><%= find_average_score(player.game_players) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
